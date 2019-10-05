@@ -1,0 +1,52 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+\usepackage[version=3]{mhchem}
+\usepackage{amsmath}
+\usepackage[siunitx]{circuitikz}
+\usepackage{graphicx}
+\usepackage{here}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\title{統計的機械学習レポート}
+\author{工学部電子情報工学科3年 03190449  堀 紡希}
+\date{\ 6月18日}
+\maketitle
+
+\section{レポート課題1 データが複数ある場合}
+
+
+$q(z_{1:n}) = \prod_{i=1}^{n}q(z_{i})$と置いた時
+
+
+\begin{align*}
+\log{p_{\theta}(x_{1:n})}&=\log{\int p_{\theta}(x_{1:n}, z_{1:n})dz_{1:n}}\\
+&=\log{\int q(z_{1:n})\frac{p_{\theta}(x_{1:n}, z_{1:n})}{q(z_{1:n})}dz_{1:n}}\\
+&\geq \int q(z_{1:n})\log{\frac{p_{\theta}(x_{1:n}, z_{1:n})}{q(z_{1:n})}}dz_{1:n}\\
+&=\int q(z_{1:n})(\log{p_{\theta}(x_{1:n}, z_{1:n})}-\log{q(z_{1:n})})dz_{1:n}\\
+&=\int \prod^{n}_{i=1}q(z_{i})(\log{\prod^{n}_{i=1}p_{\theta}(x_{i}, z_{i})}-\log{q(z_{1:n})})dz_{1}\dots dz_{n}\\
+&=\int \prod^{n}_{i=1}q(z_{i})(\sum^{n}_{i=1}\log{p_{\theta}(x_{i}, z_{i})}-\log{q(z_{1:n})})dz_{1}\dots dz_{n}\\
+&=\sum^{n}_{i=1}\int q(z_{i})\log{\frac{p_{\theta}(x_{i}|z_{i})p(z_{i})}{q(z_{i})}}dz_{i}\\
+&= \sum^{n}_{i=1}L[q(z_{i}), \theta;x_{i}]
+\end{align*}
+より示された。
+
+
+
+
+\section{レポート課題2 周辺尤度とKL情報量の関係の導出}
+
+\begin{align*}
+&\log{p(x_{1:n}|\eta)}-L[q(z_{1:n})q(\theta);x_{1:n}]\\
+&=\sum_{z}\int q(z_{1:n})q_{\theta}d\theta\log{p(x_{q:n}|\eta)}-\sum_{z}\int q(z_{1:n})q(\theta)\log{\frac{p(x_{1:n},z_{1:n}, \theta|\eta)}{q(z_{1:n})q(\theta)}}d\theta\\
+&=\sum_{z}\int q(z_{1:n})q_{\theta}\log{\frac{p(x_{1:n}|\eta)q(z_{1:n})q(\theta)}{p(x_{1:n},\theta|x_{1:n}, \eta)}}d\theta\\
+&=\sum_{z}\int q(z_{1:n})q(\theta)\log{\frac{q(z)q(\theta)}{p(z, \theta|x, \eta)}}d\theta\\
+&=KL[q(z_{1:n})q(\theta)|p(z_{1:n}, \theta|x_{1:n}, \eta)]
+\end{align*}
+
+
+より示された。
+
+
+\end{document}

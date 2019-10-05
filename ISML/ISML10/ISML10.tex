@@ -1,0 +1,81 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+\usepackage[version=3]{mhchem}
+\usepackage{amsmath}
+\usepackage[siunitx]{circuitikz}
+\usepackage{graphicx}
+\usepackage{here}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\title{統計的機械学習レポート}
+\author{工学部電子情報工学科3年 03190449  堀 紡希}
+\date{\ 6月18日}
+\maketitle
+
+\section{レポート課題1}
+
+\begin{align}
+q(u_{j})&\propto p(u_{j}|\Lambda_{u})\exp({\sum_{i}\int q(v_{i})\log{p(r_{j,i}|u_{j}^{T}v_{i}, \sigma ^{2})}dv_{i})}\\
+&\propto \exp{(-\frac{1}{2\sigma^{2}}(-2u_{j}^{T}\sum_{i}r_{j,i}E_{q(v_{i})}[v_{i}]+u_{j}^{T}(\sum_{i}E_{q(v_{i})}[v_{i}v_{i}^{T}]+\sigma ^{2}\Lambda _{u})u_{j}))}
+\end{align}
+
+これと
+\[ N(x|\mu ,\Sigma) \propto \exp{(-\frac{1}{2}(x^{T}\Sigma^{-1}x-2x^{T}\Sigma^{-1}\mu))}\]
+より$q_{u_{j}} = N(u_{j}|\mu_{u, j}, V_{u, j})$
+
+(2)の後ろの項と比較して
+\begin{align*}
+V_{u,j}^{-1} = \sigma^{-2}[\sum_{i}E_{q(v_{i})}[v_{i}v_{i}^{T}]+\sigma ^{2}\Lambda _{u}]\\
+V_{u,j} = \sigma^{2}[\sum_{i}E_{q(v_{i})}[v_{i}v_{i}^{T}]+\sigma ^{2}\Lambda _{u}]^{-1}
+\end{align*}
+
+前の項と比較すると
+
+\begin{align*}
+V_{u,j}^{-1}\mu_{u,j} = \frac{1}{\sigma^{2}}\sum_{i}r_{j,i}E_{q(v_{i})}[v_{i}]\\
+\mu_{u,j} = \sigma^{-2}V_{u,j}\sum_{i}r_{j,i}E_{q(v_{i})}[v_{i}]
+\end{align*}
+
+
+
+
+$q(v_{i})$の場合も同様に
+
+\begin{align}
+q(v_{i})&\propto p(v_{i}|\Lambda_{v})\exp({\sum_{j}\int q(u_{j})\log{p(r_{j,i}|u_{j}^{T}v_{i}, \sigma ^{2})}du_{j})}\\
+&\propto \exp{(-\frac{1}{2\sigma^{2}}(-2v_{i}^{T}\sum_{j}r_{j,i}E_{q(u_{j})}[u_{j}]+v_{i}^{T}(\sum_{j}E_{q(u_{j})}[u_{j}u_{j}^{T}]+\sigma ^{2}\Lambda _{v})v_{i}))}
+\end{align}
+
+より
+\newpage
+
+\[q(v_{i}) = N(v_{i}|\mu_{v, i}, V_{v, i})\]
+\[\mu_{v, i} = \sigma^{-2}V_{v, i}\sum_{j}r_{j, i}E_{q(u_{j})}[u_{j}]\]
+\[V_{v, i} = \sigma^{2}[\sum_{j}E_{q(u_{j})}[u_{j}u_{j}^{T}]+\sigma^{2}\Lambda_{v}]^{-1}\]
+
+が得られる。
+
+
+\section{レポート課題2}
+
+についてはわからなかったのでまた後でやろうと思います。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

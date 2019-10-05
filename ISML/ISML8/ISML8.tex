@@ -1,0 +1,98 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+\usepackage[version=3]{mhchem}
+\usepackage{amsmath}
+\usepackage[siunitx]{circuitikz}
+\usepackage{graphicx}
+\usepackage{here}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\title{統計的機械学習レポート}
+\author{工学部電子情報工学科3年 03190449  堀 紡希}
+\date{\ 6月11日}
+\maketitle
+
+\section{ID:01}
+
+\begin{verbatim}
+import math
+
+def beta(a, b, p):
+    return (math.gamma(a+b)*p**(a-1)*(1-p)**(b-1))/(math.gamma(a)*math.gamma(b))
+
+from scipy import integrate
+
+def beta52(p):
+    return beta(5, 2, p)
+print(1-integrate.quad(beta52, 0, 0.5)[0])
+
+print(1-integrate.quad(beta52, 0, 0.8)[0])
+
+def beta0101(p):
+    return beta(4.1, 1.1, p)
+print(1-integrate.quad(beta0101, 0, 0.8)[0])
+
+def beta96(p):
+    return beta(9, 6, p)
+print(1-integrate.quad(beta96, 0, 0.8)[0])
+\end{verbatim}
+
+
+を実行して
+
+$p(\pi>0.5 | data) \approx  0.89$
+
+$p(\pi>0.8 | data) \approx  0.34$
+
+beta(0.1, 0.1)の時
+
+$p(\pi>0.8 | data) \approx  0.56$
+
+beta(5, 5)の時
+
+$p(\pi>0.8 | data) \approx  0.043$であった。
+
+\section{ID:02}
+
+
+$\pi$の事後分布が$Beta(\pi|16, 6)$
+
+負の二項分布の期待値$E_{NB(x|\pi)}[x] = k\frac{1-\pi}{\pi}$
+
+より2人陽性が出るまでの陰性の人の数の期待値が$E_{NB(x|\pi)}[x] = 2\frac{1-\pi}{\pi}$
+
+
+\[E[x|data] = \int_{0}^{1}2\frac{1-\pi}{\pi}Beta(\pi|16, 6)d\pi\]
+
+$\pi$が0.1(90\%で二人以上当たる)を仮定すると
+
+\[ \int^{0.1}_{0} 18 Beta(\pi | 16, 6)d\pi \approx 0.014\]
+
+
+よって18人選んでくると約98.5\%以上の確率で陽性の人が二人以上いる。
+
+\begin{verbatim}
+def beta616(p):
+    return beta(6, 16, p)
+print(integrate.quad(beta616, 0, 0.1)[0])
+\end{verbatim}
+
+ID:01に追加してこれで実行した。
+\section{ID:03}
+
+
+よくわからなかったので後でやります。
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

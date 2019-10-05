@@ -1,0 +1,47 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+\usepackage[version=3]{mhchem}
+\usepackage{amsmath}
+\usepackage[siunitx]{circuitikz}
+\usepackage{graphicx}
+\usepackage{here}
+\usepackage{mathrsfs}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\title{統計的機械学習レポート}
+\author{工学部電子情報工学科3年 03190449  堀 紡希}
+\date{\ 7月9日}
+\maketitle
+
+\section{レポート課題1}
+
+
+仮定より
+\[f(x_{\ast}) \sim \mathscr{N}(m(x_{\ast}),\kappa(x_{\ast},x_{\ast})) \]
+
+\[f(x_{\ast})|f(x_{1}),\dots,f(x_{n})\sim \mathscr{N}(\mu_{n}(x_{\ast}),\sigma_{n}^{2}(x_{\ast})) \]
+である。
+
+ガウス分布の条件付き分布の$\hat{\mu},\hat{\Sigma}$の関係式
+
+\[\hat{\mu_{2}}=\mu_{2}+\Sigma_{21}\Sigma_{11}^{-1}(x_{1}-\mu_{1})\]
+\[\hat{\Sigma_{2}}=\Sigma_{22}-\Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}\]
+
+より
+
+\[\mu_{n}(x_{\ast}) = m(x_{\ast})+\kappa(x_{\ast})^{T}K(x_{1:n})^{-1}(y_{1:n}-m(x_{1:n}))\]
+\[\sigma_{n}^{2}(x_{\ast})=\kappa(x_{\ast},x_{\ast})-\kappa(x_{\ast})^{T}K(x_{1:n})^{-1}\kappa(x_{\ast})\]
+ただし
+\[\kappa(x_{\ast})=(\kappa(x_{\ast},x_{1}),\kappa(x_{\ast},x_{2}),\dots,\kappa(x_{\ast},x_{n}))^{T}\]
+
+
+
+
+
+
+
+
+
+\end{document}
